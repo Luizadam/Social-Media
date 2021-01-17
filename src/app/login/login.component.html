@@ -1,0 +1,27 @@
+<div class="bg">
+    <div class="container-fluid bg">
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="loginPage ">
+                    <div class="card" id="cardLogin">
+                        <span class="text-center mb-5"><h3 class="mt-2">WELCOME</h3></span>
+                        <div class="card-body mt-5"  >
+                            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                                <div class="form-group">
+                                    <input type="email" class="form-control mb-3 inputEmail" id="email" placeholder="Username" formControlName="email"/>
+                                    <input type="password" class="form-control inputPass" id="password"placeholder="Password" formControlName="password"/>
+                                </div>
+                                <button class="btn btn-primary btnLogin mt-4" type="submit">LOGIN</button>
+                            </form>
+                            <ul class="descLogin">
+                                <li><p>Forgot <a [routerLink]="['/forgot-password']">Password</a> </p></li>
+                                <li><p>Don’t have an account? <a [routerLink]="['/register']">Sign up</a></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>

@@ -1,0 +1,17 @@
+<div class="loginPage">
+    <div class="card" id="cardLogin">
+        <div class="card-body mt-5" >
+            <div class="form-group">
+                <form [formGroup]="formReady">
+                    <input type="password" class="form-control mb-3 inputEmail" id="password" placeholder="Password" formControlName="password" />
+                    <input type="password" class="form-control inputPass mt-4" id="confirmPassword"placeholder="Confirm Password" formControlName="confirmPassword"/>
+                    <span style="color: red;" *ngIf="formReady.get('confirmPassword').value !== formReady.get('password').value">Password tidak sama</span>
+                </form>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="alert">
+                {{msg.message}}
+              </div>
+            <button class="btn btn-primary btnLogin mt-4" (click)="send()">SAVE</button>
+        </div>
+    </div>
+</div>

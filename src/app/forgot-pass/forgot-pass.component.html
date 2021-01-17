@@ -1,0 +1,22 @@
+<div class="loginPage">
+    <div class="card" id="cardLogin">
+        <span class="text-center mb-5 mt-4"><h3>Forgot Password</h3></span>
+        <div class="card-body mt-5" >
+            <form [formGroup]="forgotForm">
+                <div class="form-group">
+                    <input type="email" class="form-control mb-3 inputEmail" id="email" placeholder="Email" formControlName="email"/>
+                    
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="alert">
+                    Email Berhasil Terikirim, Silakan Cek email anda
+                  </div>
+                <button class="btn btn-primary btnLogin mt-4" (click)="send()" >SEND</button>
+            </form>
+            
+            <ul class="descLogin">
+                <li><p>have an account? <a [routerLink]="['']">Login</a></p></li>
+                <li><p>Don’t have an account? <a [routerLink]="['/register']">Sign up</a></p></li>
+            </ul>
+        </div>
+    </div>
+</div>

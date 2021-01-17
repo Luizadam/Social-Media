@@ -1,0 +1,14 @@
+.inputEmail{
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    background-color: transparent;
+    color: white;
+    }
+    
+    
+    .inputEmail:focus{
+        outline: none;
+        box-shadow: none;
+    }

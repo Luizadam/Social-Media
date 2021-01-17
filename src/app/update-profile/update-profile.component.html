@@ -1,0 +1,38 @@
+<div class="profile">
+  <app-navigation></app-navigation>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="row d-flex justify-content-center">
+          <img
+            *ngIf="detaildata?.image"
+            src="https://api-backend-luiz.herokuapp.com/profile/{{ detaildata.image }}"
+            class="p1 mt-4"
+            style="width: 200px; height: 180px; border-radius: 50px"
+          />
+        </div>
+        <div class="row justify-content-center mt-3" [formGroup]="formUpdate">
+            <div class="form-group" style="width: 60%;">
+                <label for="exampleInputEmail1" style="color: white;">Image :</label>
+                <input type="file" class="form-control inputEmail" (change)="image($event)"   style="width: 100%;">
+              </div>
+          <div class="form-group" style="width: 60%;">
+            <label for="exampleInputEmail1" style="color: white;">Bio :</label>
+            <input type="email" class="form-control inputEmail"   placeholder="Your Bio" formControlName="bio" style="width: 100%;" >
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-4">
+          <button class="btn btn-info" (click)="saveUpdate()" style="width: 80%; border-radius: 15px">
+            Save
+          </button>
+        </div>
+        <div class="row d-flex justify-content-center mt-4">
+            <button class="btn btn-info" (click)="back()" style="width: 80%; border-radius: 15px">
+              Kembali
+            </button>
+          </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>

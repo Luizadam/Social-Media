@@ -1,0 +1,21 @@
+<div class="container-fluid" id="main">
+    <div class="registPage">
+        <div class="card" id="cardLogin">
+            <span class="text-center mb-3 mt-4"><h3>REGIST YOUR ACCOUNT</h3></span>
+            <div class="card-body mt-5" >
+                <form [formGroup]="registForm" (ngSubmit)="regist()">
+                    <div class="form-group">
+                        <input type="file" class="form-control mb-3 inputEmail" (change)="image($event)" >
+                        <input type="text" class="form-control mb-3 inputEmail" id="Fullname" placeholder="Full Name" formControlName="fullname" />
+                        <input type="email" class="form-control mb-3 inputEmail" id="email" placeholder="Email" formControlName="email"/>
+                        <input type="password" class="form-control mb-3 inputPass" id="password"placeholder="Password" formControlName="password"/>
+                    </div>
+                    <button class="btn btn-primary btnLogin mt-4" onClick={this.handleSubmit}>SIGN UP</button>
+                </form>
+                <ul class="descRegist mt-2">
+                    <li><p>have an account? <a [routerLink]="['/login']">Login</a></p></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
