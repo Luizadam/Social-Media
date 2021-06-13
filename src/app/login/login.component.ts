@@ -8,6 +8,7 @@ import {Router} from '@angular/router'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loading:boolean
   loginForm = new FormGroup({
     email:new FormControl(''),
     password:new FormControl('')
@@ -17,10 +18,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(){
+    this.loading = true
     this.api.login(this.loginForm.value).subscribe((res)=>{
-      console.log(res)
       let data = JSON.stringify(res)
       localStorage.setItem('user',data)
+      this.loading = false 
       this.router.navigateByUrl('')
       this.loginForm.reset({})
     })

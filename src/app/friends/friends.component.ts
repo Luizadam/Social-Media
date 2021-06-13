@@ -8,6 +8,7 @@ import { SosmedService} from '../sosmed.service'
 })
 export class FriendsComponent implements OnInit {
   user:any = []
+  loading:boolean
   constructor(private api :SosmedService) { }
 
   ngOnInit(): void {
@@ -15,8 +16,10 @@ export class FriendsComponent implements OnInit {
   }
 
   getallUser(){
+    this.loading = true
     this.api.getAllUser().subscribe((res)=>{
       this.user = res
+      this.loading = false
     })
   }
 

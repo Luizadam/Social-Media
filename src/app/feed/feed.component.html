@@ -69,7 +69,12 @@
                 <hr>
                 <div class="row mt-2 ml-2" *ngFor="let komen of data.comments">
                   <div class="col-md-12">
-                    <div class="mr-3 " style="border: transparent; background-color: #E3F2FD " >
+                    <div class="mr-3 " style="border: transparent; background-color: #E3F2FD " *ngIf="komen.postedBy === parse.user.id">
+                      <span><b>{{komen.postedByName}}</b></span>
+                      <br/>
+                      <span >{{komen.text}}</span>
+                    </div>
+                    <div class="mr-3 " style="border: transparent; background-color: #FFFFFF " *ngIf="komen.postedBy !== parse.user.id">
                       <span><b>{{komen.postedByName}}</b></span>
                       <br/>
                       <span >{{komen.text}}</span>
@@ -87,5 +92,8 @@
           </div>
         </div>
       </div>
+      <div class="progress-spinner" *ngIf="loading">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
   </div>
 </div>

@@ -21,6 +21,7 @@ import { FriendsComponent } from './friends/friends.component';
 import { ViewFriendsComponent } from './view-friends/view-friends.component';
 import { ChatComponent } from './chat/chat.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
     MessagesModule,
     BrowserAnimationsModule,
     InputTextModule,
-    RippleModule
+    RippleModule,
+    ProgressSpinnerModule
     
   ],
   providers: [],

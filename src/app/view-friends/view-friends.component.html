@@ -101,18 +101,15 @@
               <hr />
               <div class="row mt-2 ml-2" *ngFor="let komen of list.comments">
                 <div class="col-md-12">
-                  <div
-                    class="mr-3"
-                    style="
-                      border: transparent;
-                      background-color: #e3f2fd;
-                      border-radius: 20px;
-                    "
-                  >
-                    <span class="d-inline p-2"
-                      ><b>{{ komen.postedByName }}</b></span
-                    >
-                    <span class="d-inline p-2">{{ komen.text }}</span>
+                  <div class="mr-3 " style="border: transparent; background-color: #E3F2FD;border-radius: 10px; " *ngIf="komen.postedBy === userLike">
+                    <span><b>{{komen.postedByName}}</b></span>
+                    <br/>
+                    <span >{{komen.text}}</span>
+                  </div>
+                  <div class="mr-3 " style="border: transparent; background-color: #FFFFFF;border-radius: 10px; " *ngIf="komen.postedBy !== userLike">
+                    <span><b>{{komen.postedByName}}</b></span>
+                    <br/>
+                    <span >{{komen.text}}</span>
                   </div>
                 </div>
               </div>

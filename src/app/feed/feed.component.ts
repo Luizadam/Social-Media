@@ -16,6 +16,8 @@ export class FeedComponent implements OnInit {
   formKomen:FormGroup
   file:File
   userId:any
+  loading:boolean
+  parse = JSON.parse(localStorage.getItem('user'))
   constructor(private api:SosmedService,private fb:FormBuilder, private cd: ChangeDetectorRef,private router:Router) 
   {
     this.createForm()
@@ -26,10 +28,13 @@ export class FeedComponent implements OnInit {
 
   ngOnInit() {
     this.getdata()
+    
   }
 
   getdata(){
+    this.loading = true
     this.api.getFeed().subscribe((res)=>{
+      this.loading = false
       this.listFeeds = res
       console.log(this.listFeeds)
     })
@@ -106,11 +111,13 @@ export class FeedComponent implements OnInit {
     data.append('title',this.formReady.get('title').value)
     data.append('desc',this.formReady.get('desc').value)
     data.append('createdBy',this.formReady.get('createdBy').value)
+    this.loading = true
     this.api.posting(data).subscribe((res)=>{
       
       this.getdata()
       this.formReady.reset({})
       this.myInputVariable.nativeElement.value = '';
+      this.loading = false
       data.append('postImage',null)
     })
    

@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   detaildata:any = []
   formLike:FormGroup
   formKomen:FormGroup
+  parse = JSON.parse(localStorage.getItem('user'))
   constructor(private api : SosmedService,private fb:FormBuilder,private router:Router) 
   {
     this.createFormLike()
