@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { SosmedService } from '../sosmed.service'
 import { FormBuilder,FormGroup} from '@angular/forms'
 import { Router} from '@angular/router'
+import { ChatService } from '../chat.service';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -18,7 +19,7 @@ export class FeedComponent implements OnInit {
   userId:any
   loading:boolean
   parse = JSON.parse(localStorage.getItem('user'))
-  constructor(private api:SosmedService,private fb:FormBuilder, private cd: ChangeDetectorRef,private router:Router) 
+  constructor(private api:SosmedService,private fb:FormBuilder, private cd: ChangeDetectorRef,private router:Router,private serviceSocket : ChatService) 
   {
     this.createForm()
     this.createFormLike()
@@ -30,6 +31,11 @@ export class FeedComponent implements OnInit {
     this.getdata()
     
   }
+
+  // fetchSocket(){
+  //   this.serviceSocket.newUserJoined()
+  //       .subscribe(data=> console.log(data));
+  // }
 
   getdata(){
     this.loading = true

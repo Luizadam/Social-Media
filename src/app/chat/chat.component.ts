@@ -7,10 +7,11 @@ import { ChatService} from'../chat.service'
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent  {
-
+    dataLokal : any = localStorage.getItem('user');
   user:String;
     room:String;
     messageText:String;
+    
     messageArray:Array<{user:String,message:String}> = [];
     constructor(private _chatService:ChatService){
         this._chatService.newUserJoined()
@@ -25,7 +26,7 @@ export class ChatComponent  {
     }
 
     join(){
-        this._chatService.joinRoom({user:this.user, room:this.room});
+        this._chatService.joinRoom(this.dataLokal);
     }
 
     leave(){

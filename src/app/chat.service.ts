@@ -1,66 +1,74 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
-import {Observable} from 'rxjs';
-
-
-
+import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root',
+})
+export class ChatService {
+  private socket = io('http://localhost:3001', {
+    withCredentials: true,
+  });
 
+  joinRoom(data) {
+    this.socket.emit('new user', data);
+    console.log(data);
+  }
 
-export class ChatService{
+  newUserJoined() {
+    let observable = new Observable<any>((observer) => {
+      this.socket.on('new user', function (data) {
+        observer.next((user) => console.log(user));
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    });
 
-    private socket = io('http://localhost:3001', {
-        withCredentials: true
-      });;
+    return observable;
+  }
 
-    joinRoom(data)
-    {
-        this.socket.emit('join',data);
-    }
+  addToUsersBox = (userName) => {
+      console.log(userName);
+      
+    return userName;
+  };
 
-    newUserJoined()
-    {
-        let observable = new Observable<{user:String, message:String}>(observer=>{
-            this.socket.on('new user joined', (data)=>{
-                observer.next(data);
-            });
-            return () => {this.socket.disconnect();}
+  leaveRoom(data) {
+    this.socket.emit('leave', data);
+  }
+
+  userLeftRoom() {
+    let observable = new Observable<any>(
+      (observer) => {
+        this.socket.on('offline', (data) => {
+          observer.next(user => console.log(user));
         });
+        return () => {
+          this.socket.disconnect();
+        };
+      }
+    );
 
-        return observable;
-    }
+    return observable;
+  }
 
-    leaveRoom(data){
-        this.socket.emit('leave',data);
-    }
+  sendMessage(data) {
+    this.socket.emit('message', data);
+  }
 
-    userLeftRoom(){
-        let observable = new Observable<{user:String, message:String}>(observer=>{
-            this.socket.on('left room', (data)=>{
-                observer.next(data);
-            });
-            return () => {this.socket.disconnect();}
+  newMessageReceived() {
+    let observable = new Observable<{ user: String; message: String }>(
+      (observer) => {
+        this.socket.on('new message', (data) => {
+          observer.next(data);
         });
+        return () => {
+          this.socket.disconnect();
+        };
+      }
+    );
 
-        return observable;
-    }
-
-    sendMessage(data)
-    {
-        this.socket.emit('message',data);
-    }
-
-    newMessageReceived(){
-        let observable = new Observable<{user:String, message:String}>(observer=>{
-            this.socket.on('new message', (data)=>{
-                observer.next(data);
-            });
-            return () => {this.socket.disconnect();}
-        });
-
-        return observable;
-    }
+    return observable;
+  }
 }
